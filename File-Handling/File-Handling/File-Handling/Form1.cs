@@ -17,6 +17,9 @@ namespace File_Handling
         {
             InitializeComponent();
             this.Hide();
+
+            ///  FilePrompter Test (code block):
+            /*
             Helpers.FilePrompter fp = new Helpers.FilePrompter();
             fp.multiselect = false;
             fp.title = "Pick a File";
@@ -34,11 +37,20 @@ namespace File_Handling
                 {
                     MessageBox.Show($"File text contents:\n{string.Join("\n", txtContents)}");
                 }
-                    
-
             }
-       
-            
+            */
+
+            /// FolderPrompter (code block):
+            Helpers.FolderPrompter folderPrompter = new Helpers.FolderPrompter();
+            folderPrompter.Recursive = true;
+
+            List<string> selectedFiles = folderPrompter.PromptForFolders();
+
+            if (selectedFiles.Count > 0)
+            {
+                MessageBox.Show($"Selected Files:\n{string.Join("\n", selectedFiles)}");
+            }
+
             MessageBox.Show("Done");
             this.Close();
         }
@@ -49,6 +61,64 @@ namespace File_Handling
 
 public class Helpers
 {
+    public class FolderPrompter
+    {
+        public string InitialDirectory { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        public string Title { get; set; } = "Select Folder";
+        public bool Recursive { get; set; } = false;
+
+
+        private List<string> GetFilesInFolder(string folderPath)
+        {
+            List<string> filePaths = new List<string>();
+
+            // Check if the folder exists
+            if (Directory.Exists(folderPath))
+            {
+                // Search for files in the folder
+                SearchOption searchOption = Recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+                string[] files = Directory.GetFiles(folderPath, "*", searchOption);
+
+                // Add the file paths to the list
+                filePaths.AddRange(files);
+            }
+            else
+            {
+                Console.WriteLine("Selected folder does not exist.");
+            }
+
+            return filePaths;
+        }
+
+        public List<string> PromptForFolders()
+        {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                // Set the title of the dialog
+                folderDialog.Description = Title;
+
+                // Show the dialog and check if the user clicked OK
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the selected folder path
+                    string selectedFolderPath = folderDialog.SelectedPath;
+
+                    // Get the list of file paths in the selected folder
+                    List<string> filesInFolder = GetFilesInFolder(selectedFolderPath);
+
+                    return filesInFolder;
+                }
+                else
+                {
+                    // User canceled the operation
+                    Console.WriteLine("User canceled the folder selection.");
+                    return new List<string>();
+                }
+            }
+        }
+
+    }//  public class FolderPrompter
+
     public class FilePrompter
     {
         public string initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -314,6 +384,7 @@ public class Helpers
             }
             return fileInformation;
         }
-    }// class FileInfo
+    }// class FileInformation
+
 }// class Helpers
 
