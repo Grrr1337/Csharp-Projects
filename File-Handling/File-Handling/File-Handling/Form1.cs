@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace File_Handling
 {
@@ -16,84 +17,98 @@ namespace File_Handling
         {
             InitializeComponent();
             this.Hide();
-            Helpers.PromptForFiles();
+            Helpers.FilePrompter fp = new Helpers.FilePrompter();
+            fp.multiselect = false;
+            fp.title = "Pick a File";
+            List<String>  selectedFilePaths = fp.PromptForFiles(); // <- non-static version
+            // List<String> selectedFilePaths = Helpers.PromptForFiles(); // <- static version
+            // https://stackoverflow.com/questions/18867180/check-if-list-is-empty-in-c-sharp
+            if (selectedFilePaths?.Any() != false)
+            {
+                MessageBox.Show($"Selected Files:\n{string.Join("\n", selectedFilePaths)}");
+                Helpers.FileInformation finfo = new Helpers.FileInformation();
+                MessageBox.Show($"File info:\n{string.Join("\n", finfo.GetInfo(selectedFilePaths.First()))}");
+            }
+       
+            
             MessageBox.Show("Done");
             this.Close();
         }
     }
 }
+ 
 
 
 public class Helpers
 {
-    private static string initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-    public static void PromptForFile()
+    public class FilePrompter
     {
-        // Create an instance of the OpenFileDialog
-        OpenFileDialog openFileDialog = new OpenFileDialog();
+        public string initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        public string title = "Select File";
+        public string filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+        public bool multiselect = true;
 
-        // Set the title of the dialog
-        openFileDialog.Title = "Select a File";
-
-        // Set the initial directory
-        openFileDialog.InitialDirectory = initialDirectory;
-
-        // Filter the types of files to be displayed
-        openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-
-        // Allow the user to select multiple files (optional)
-        openFileDialog.Multiselect = false;
-
-        // Show the dialog and check if the user clicked OK
-        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        public List<string> PromptForFiles()
         {
-            // Get the selected file name
-            string selectedFileName = openFileDialog.FileName;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = title;
+            openFileDialog.InitialDirectory = initialDirectory;
+            openFileDialog.Filter = filter;
+            openFileDialog.Multiselect = multiselect;
 
-            // Display the selected file name
-            Console.WriteLine("Selected File: " + selectedFileName);
-        }
-        else
-        {
-            Console.WriteLine("User canceled the operation");
-        }
-    }
-
-    public static void PromptForFiles()
-    {
-        // Create an instance of the OpenFileDialog
-        OpenFileDialog openFileDialog = new OpenFileDialog();
-
-        // Set the title of the dialog
-        openFileDialog.Title = "Select Files";
-
-        // Set the initial directory
-        openFileDialog.InitialDirectory = initialDirectory;
-
-        // Filter the types of files to be displayed
-        openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-
-        // Allow the user to select multiple files
-        openFileDialog.Multiselect = true;
-
-        // Show the dialog and check if the user clicked OK
-        if (openFileDialog.ShowDialog() == DialogResult.OK)
-        {
-            // Get an array of selected file names
-            string[] selectedFileNames = openFileDialog.FileNames;
-
-            // Display the selected file names
-            Console.WriteLine("Selected Files:");
-            foreach (string fileName in selectedFileNames)
+            // Show the dialog and check if the user clicked OK
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine(fileName);
+                List<string> selectedFileNames = new List<string>(openFileDialog.FileNames);
+                return selectedFileNames;
+            }
+            else
+            {
+                Console.WriteLine("User canceled the operation");
+                // Return an empty list
+                return new List<string>();
             }
         }
-        else
+    }// class FilePrompter
+    public class FileInformation
+    {
+        public List<String> GetInfo(string filePath)
         {
-            Console.WriteLine("User canceled the operation");
+            List<string> fileInformation = new List<string>();
+
+            // Check if the file exists
+            if (File.Exists(filePath))
+            {
+                // Get file information
+                FileInfo fileInfo = new FileInfo(filePath);
+
+                // Get file size in bytes
+                long fileSizeInBytes = fileInfo.Length;
+
+                // Get file creation time
+                DateTime creationTime = fileInfo.CreationTime;
+
+                // Get last modification time
+                DateTime lastModifiedTime = fileInfo.LastWriteTime;
+
+                // Convert file size to kilobytes or megabytes for better readability
+                double fileSizeInKB = fileSizeInBytes / 1024.0;
+                double fileSizeInMB = fileSizeInKB / 1024.0;
+
+                // Add file information to the list
+                fileInformation.Add($"File Size: {fileSizeInBytes} bytes");
+                fileInformation.Add($"File Size (KB): {fileSizeInKB} KB");
+                fileInformation.Add($"File Size (MB): {fileSizeInMB} MB");
+                fileInformation.Add($"Creation Time: {creationTime}");
+                fileInformation.Add($"Last Modified Time: {lastModifiedTime}");
+            }
+            else
+            {
+                // fileInformation.Add("File does not exist.");
+                return new List<string>();
+            }
+            return fileInformation;
         }
-    }
+    }// class FileInfo
 }// class Helpers
 
