@@ -28,6 +28,14 @@ namespace File_Handling
                 MessageBox.Show($"Selected Files:\n{string.Join("\n", selectedFilePaths)}");
                 Helpers.FileInformation finfo = new Helpers.FileInformation();
                 MessageBox.Show($"File info:\n{string.Join("\n", finfo.GetInfo(selectedFilePaths.First()))}");
+
+                List<String> txtContents = finfo.GetTextFileContents(selectedFilePaths.First());
+                if (txtContents?.Any() != false)
+                {
+                    MessageBox.Show($"File text contents:\n{string.Join("\n", txtContents)}");
+                }
+                    
+
             }
        
             
@@ -72,6 +80,85 @@ public class Helpers
     }// class FilePrompter
     public class FileInformation
     {
+        /*
+        private bool IsTextFile(string filePath)
+        {
+            string extension = Path.GetExtension(filePath)?.ToLower();
+
+            // Check if the file has a .txt extension
+            return extension == ".txt";
+        }
+        */
+
+        // checking if the file is non-binary instead:
+        // https://stackoverflow.com/questions/4744890/c-sharp-check-if-file-is-text-based
+        public bool IsBinary(string filePath, int requiredConsecutiveNul = 1)
+        {
+            const int charsToCheck = 8000;
+            const char nulChar = '\0';
+
+            int nulCount = 0;
+
+            using (var streamReader = new StreamReader(filePath))
+            {
+                for (var i = 0; i < charsToCheck; i++)
+                {
+                    if (streamReader.EndOfStream)
+                        return false;
+
+                    if ((char)streamReader.Read() == nulChar)
+                    {
+                        nulCount++;
+
+                        if (nulCount >= requiredConsecutiveNul)
+                            return true;
+                    }
+                    else
+                    {
+                        nulCount = 0;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public List<string> GetTextFileContents(string filePath)
+        {
+            List<string> fileContents = new List<string>();
+
+            // Check if the file exists
+            if (File.Exists(filePath))
+            {
+                // Check if the file is a .txt file
+                if (!IsBinary(filePath))
+                {
+                    try
+                    {
+                        // Read all lines from the text file
+                        fileContents.AddRange(File.ReadAllLines(filePath));
+                    }
+                    catch (Exception ex)
+                    {
+                        // fileContents.Add($"Error reading text file: {ex.Message}");
+                        return null;
+                    }
+                }
+                else
+                {
+                    // fileContents.Add("File is not a .txt file.");
+                    return null;
+                }
+            }
+            else
+            {
+                // fileContents.Add("File does not exist.");
+                return null;
+            }
+
+            return fileContents;
+        }
+
         private bool IsImageFile(string filePath)
         {
             string extension = Path.GetExtension(filePath)?.ToLower();
