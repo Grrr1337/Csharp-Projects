@@ -10,6 +10,33 @@ class Program
         int[] myArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 
         Console.WriteLine($"Original Array:\n{string.Join(", ", myArray)}");
+        Console.WriteLine($"Array length: {myArray.Length}");
+        Console.WriteLine($"First element: {myArray.First()} | {myArray[0]}");
+        Console.WriteLine($"Last element: {myArray.Last()} | {myArray[^1]}"); // myArray[myArray.Length - 1]
+        Console.WriteLine($"\nReversed Array:\n{string.Join(", ", myArray.Reverse())}");
+
+        // Adding an item to the array (must be re-casted to List datatype):
+        List<int> tmpList1 = new List<int>(myArray);
+        tmpList1.Add(69);
+        // If I need it back as an array
+        int[] addedToArray = tmpList1.ToArray();
+        Console.WriteLine($"\nAdded '69' to the Array:\n{string.Join(", ", addedToArray)}");
+
+        // Removing an Item from the array (must be re-casted to List datatype):
+        List<int> tmpList2 = new List<int>(myArray);
+        tmpList2.Remove(1);
+        // If you need it back as an array
+        int[] removedFromArray = tmpList2.ToArray();
+        Console.WriteLine($"\nRemoved '1' from the Array:\n{string.Join(", ", removedFromArray)}");
+
+        // Copying an array:
+        int[] originalArray = { 1, 2, 3, 4, 5 };
+        int[] copiedArray = new int[originalArray.Length];
+        Array.Copy(originalArray, copiedArray, originalArray.Length);
+        Console.WriteLine($"\nCopied Array:\n{string.Join(", ", copiedArray)}");
+
+        // Obtaining a value by providing index (nth)
+        Console.WriteLine($"\nIndex of 3: {Array.IndexOf(myArray, 3)}");
 
         Console.WriteLine("\nMapping (x2) each element:");
         // Mapping: Doubling each element
@@ -89,5 +116,116 @@ class Program
         Console.WriteLine($"Unique to arr2: {string.Join(", ", uniqueToArr2)}");
 
 
+
+
+        Console.WriteLine("\nDistinct values: ");
+        int[] myArrayDistinctTest = { 1, 1, 1, 2, 2, 3, 4, 4, 5, 8, 8, 8 };
+        // Getting distinct values using LINQ
+        int[] distinctValues = myArrayDistinctTest.Distinct().ToArray();
+
+        Console.WriteLine($"Original array: {string.Join(", ", myArrayDistinctTest)}");
+        Console.WriteLine($"distinctValues: {string.Join(", ", distinctValues)}");
+
+
+        Console.WriteLine("\nGrouped values: ");
+        string[] words = { "apple", "banana", "cherry", "date", "blueberries", "pineapple", "strawberry", "ananas", "pear", "coconut" };
+
+        // Grouping words by their first letter
+        var groupedByFirstLetter = words.GroupBy(word => word[0]);
+
+        Console.WriteLine($"Original array:\n {string.Join(", ", words)}");
+        // Console.WriteLine($"Grouped by first letter: {string.Join(", ", groupedByFirstLetter)}");
+
+        // Iterating over groups and printing each group and its elements
+        foreach (var group in groupedByFirstLetter)
+        {
+            Console.WriteLine($"Group for letter {group.Key}: {string.Join(", ", group)}");
+        }
+
+        // Converting to Dictionary:
+        int[] keys = { 1, 2, 3, 4 };
+        string[] values = { "one", "two", "three", "four" };
+
+        // Converting two arrays to a dictionary
+        var dictionary = keys.Zip(values, (k, v) => new { Key = k, Value = v })
+                            .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        Console.WriteLine("\nDictionary contents:");
+        foreach (var kvp in dictionary)
+        {
+            Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+        }
+
+
+        Console.WriteLine("\nFlatting an array:");
+        int[][] nestedArray = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 } };
+
+        // Flattening a nested array
+        int[] flatArray = nestedArray.SelectMany(subArray => subArray).ToArray();
+        Console.WriteLine($"Flat array: {string.Join(", ", flatArray)}");
+
+
+        Console.WriteLine("\nCheck if All/Any Elements Satisfy a Condition: (vl-every/vl-some):");
+
+        // Checking if all elements are even
+        bool allEven = myArray.All(n => n % 2 == 0);
+        Console.WriteLine($"Are all even?: {allEven}");
+
+        // Define a custom test function
+        bool IsGreaterThanThree(int x) => x > 3;
+
+        // Check if any element satisfies the custom condition
+        bool anyGreaterThanThree = myArray.Any(IsGreaterThanThree);
+        Console.WriteLine($"anyGreaterThanThree?: {anyGreaterThanThree}");
+
+        // Checking if any element is greater than 4
+        bool anyGreaterThan4 = myArray.Any(n => n > 4);
+        Console.WriteLine($"anyGreaterThan4?: {anyGreaterThan4}");
+
+        Console.WriteLine("\nShifting an array:");
+        Console.WriteLine($"Right shift: {string.Join(", ", Helpers.ShiftRight(myArray))}");
+        Console.WriteLine($"Left shift: {string.Join(", ", Helpers.ShiftLeft(myArray))}");
     }// main
 }// class Program
+
+
+class Helpers
+{
+
+    public static int[] ShiftLeft(int[] array)
+    {
+        if (array.Length < 2)
+        {
+            // No need to shift if the array has 0 or 1 element
+            return array;
+        }
+
+        int[] shiftedArray = new int[array.Length];
+
+        // Copy elements starting from index 1 to the end
+        Array.Copy(array, 1, shiftedArray, 0, array.Length - 1);
+
+        // Place the first element at the end
+        shiftedArray[array.Length - 1] = array[0];
+
+        return shiftedArray;
+    }
+    public static int[] ShiftRight(int[] array)
+    {
+        if (array.Length < 2)
+        {
+            // No need to shift if the array has 0 or 1 element
+            return array;
+        }
+
+        int[] shiftedArray = new int[array.Length];
+
+        // Place the last element at the beginning
+        shiftedArray[0] = array[array.Length - 1];
+
+        // Copy elements from the original array to the new array, excluding the last element
+        Array.Copy(array, 0, shiftedArray, 1, array.Length - 1);
+
+        return shiftedArray;
+    }
+}
