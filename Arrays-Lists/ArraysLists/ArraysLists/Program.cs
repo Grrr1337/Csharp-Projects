@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Linq;
+
 class Program
 {
     public static void Main(string[] args)
@@ -60,12 +63,31 @@ class Program
         var shuffledArray = myArray.OrderBy(x => Guid.NewGuid()).ToArray();
         Console.WriteLine($"\nShuffled Array:\n{string.Join(", ", shuffledArray)}");
 
-        Console.WriteLine("\nIndexing (printing the index and the value at the same time): ");
-        string[] strArray = new string[] { "Vlado", "Gosho", "Pesho", "Kiro" };
+        Console.WriteLine("\nIndexing (accessing the index and the value at the same time): ");
+        string[] strArray = new string[] { "Vlado", "Gosho", "Pesho", "Kiro", "Ivan" };
         // Printing each element with index using LINQ and Select
         strArray.Select((item, index) => $"index: {index} | value: {item}")
                .ToList()
                .ForEach(result => Console.WriteLine(result));
+
+
+        Console.WriteLine("\nCommon values (array intersection): ");
+        int[] arr1 = { 1, 2, 3, 4, 5, 8, 9 };
+        int[] arr2 = { 3, 4, 5, 6, 7, 8, 9 };
+
+        // Finding common values using LINQ and Intersect
+        int[] commonValues = arr1.Intersect(arr2).ToArray();
+
+        Console.WriteLine($"commonValues :\n{string.Join(", ", commonValues)}");
+
+        Console.WriteLine("\nUnique values (array difference): ");
+        // Finding values unique to each array using LINQ and Except
+        int[] uniqueToArr1 = arr1.Except(arr2).ToArray();
+        int[] uniqueToArr2 = arr2.Except(arr1).ToArray();
+
+        Console.WriteLine($"Unique to arr1: {string.Join(", ", uniqueToArr1)}");
+        Console.WriteLine($"Unique to arr2: {string.Join(", ", uniqueToArr2)}");
+
 
     }// main
 }// class Program
