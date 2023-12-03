@@ -72,7 +72,7 @@ public class Helpers
             }
             else
             {
-                Console.WriteLine("User canceled the operation");
+                // Console.WriteLine("User canceled the operation");
                 // Return an empty list
                 return new List<string>();
             }
@@ -87,6 +87,80 @@ public class Helpers
 
             // Check if the file has a .txt extension
             return extension == ".txt";
+        }
+        */
+
+        // This seems to work aswell:
+        public bool IsTextFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                return false; // File doesn't exist
+            }
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                int byteRead;
+                while ((byteRead = fileStream.ReadByte()) != -1)
+                {
+                    // Check for control characters or non-printable characters
+                    if (byteRead < 32 && byteRead != 9 && byteRead != 10 && byteRead != 13)
+                    {
+                        return false; // Binary content detected
+                    }
+                }
+            }
+
+            return true; // Likely a text file
+        }
+
+        /*
+        // Doesn't work on a chineese characters
+        public bool IsTextFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                return false; // File doesn't exist
+            }
+
+            byte[] buffer = new byte[4096]; // Adjust the buffer size based on your needs
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                int bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+
+                // Check for common text file characteristics
+                for (int i = 0; i < bytesRead; i++)
+                {
+                    byte currentByte = buffer[i];
+
+                    // Check for control characters or non-printable characters
+                    if (currentByte < 32 && currentByte != 9 && currentByte != 10 && currentByte != 13)
+                    {
+                        return false; // Binary content detected
+                    }
+                }
+
+                // Check for a UTF-8 BOM (Byte Order Mark)
+                if (bytesRead >= 3 && buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
+                {
+                    return true; // UTF-8 BOM found, likely a text file
+                }
+
+                // Check for a UTF-16 BOM
+                if (bytesRead >= 2 && (buffer[0] == 0xFF && buffer[1] == 0xFE) || (buffer[0] == 0xFE && buffer[1] == 0xFF))
+                {
+                    return true; // UTF-16 BOM found, likely a text file
+                }
+
+                // Check for valid ASCII characters
+                if (Encoding.ASCII.GetString(buffer, 0, bytesRead).Equals(Encoding.UTF8.GetString(buffer, 0, bytesRead)))
+                {
+                    return true; // Likely a text file
+                }
+            }
+
+            return false; // Couldn't definitively determine file type
         }
         */
 
@@ -121,7 +195,7 @@ public class Helpers
             }
 
             return false;
-        }
+        }// public bool IsBinary
 
         public List<string> GetTextFileContents(string filePath)
         {
@@ -131,7 +205,8 @@ public class Helpers
             if (File.Exists(filePath))
             {
                 // Check if the file is a .txt file
-                if (!IsBinary(filePath))
+                // if (!IsBinary(filePath)) // <- works fine
+                if (IsTextFile(filePath))
                 {
                     try
                     {
