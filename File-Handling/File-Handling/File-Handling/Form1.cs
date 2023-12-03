@@ -72,6 +72,14 @@ public class Helpers
     }// class FilePrompter
     public class FileInformation
     {
+        private bool IsImageFile(string filePath)
+        {
+            string extension = Path.GetExtension(filePath)?.ToLower();
+
+            // Check if the file has a common image extension
+            return extension == ".jpg" || extension == ".jpeg" || extension == ".png" || extension == ".gif";
+        }
+
         public List<String> GetInfo(string filePath)
         {
             List<string> fileInformation = new List<string>();
@@ -79,21 +87,22 @@ public class Helpers
             // Check if the file exists
             if (File.Exists(filePath))
             {
-                // Get file information
                 FileInfo fileInfo = new FileInfo(filePath);
-
-                // Get file size in bytes
                 long fileSizeInBytes = fileInfo.Length;
-
-                // Get file creation time
                 DateTime creationTime = fileInfo.CreationTime;
-
-                // Get last modification time
                 DateTime lastModifiedTime = fileInfo.LastWriteTime;
 
                 // Convert file size to kilobytes or megabytes for better readability
                 double fileSizeInKB = fileSizeInBytes / 1024.0;
                 double fileSizeInMB = fileSizeInKB / 1024.0;
+
+                // Get file attributes
+                FileAttributes attributes = File.GetAttributes(filePath);
+
+                // Check if specific attributes are present
+                bool isReadOnly = (attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly;
+                bool isHidden = (attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+
 
                 // Add file information to the list
                 fileInformation.Add($"File Size: {fileSizeInBytes} bytes");
@@ -101,6 +110,40 @@ public class Helpers
                 fileInformation.Add($"File Size (MB): {fileSizeInMB} MB");
                 fileInformation.Add($"Creation Time: {creationTime}");
                 fileInformation.Add($"Last Modified Time: {lastModifiedTime}");
+                fileInformation.Add($"Read-Only: {isReadOnly}");
+                fileInformation.Add($"Hidden: {isHidden}");
+
+
+                // Get additional information for image files
+                if (IsImageFile(filePath))
+                {
+                    Image image = Image.FromFile(filePath);
+
+                    // Get image dimensions
+                    int width = image.Width;
+                    int height = image.Height;
+
+                    // Get image bit depth
+                    int bitDepth = Image.GetPixelFormatSize(image.PixelFormat);
+
+                    // Get image resolution (DPI)
+                    float horizontalResolution = image.HorizontalResolution;
+                    float verticalResolution = image.VerticalResolution;
+
+
+                    // Add image-specific information to the list
+                    fileInformation.Add($"Image Width: {width} pixels");
+                    fileInformation.Add($"Image Height: {height} pixels");
+                    fileInformation.Add($"Image Bit Depth: {bitDepth} bits per pixel");
+
+                    fileInformation.Add($"Image Resolution (Horizontal): {horizontalResolution} DPI");
+                    fileInformation.Add($"Image Resolution (Vertical): {verticalResolution} DPI");
+                  
+ 
+                    // Dispose of the image to release resources
+                    image.Dispose();
+                }
+
             }
             else
             {
