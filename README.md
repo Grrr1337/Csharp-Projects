@@ -1,6 +1,6 @@
-# C# Projects Repository
+# C# Projects and Snippets
 
-Welcome to the "C# Projects" repository! This collection houses a variety of C# projects and code snippets designed to assist developers in their software development journey.
+Welcome to the "C# Projects" repo! This collection houses a variety of C# projects and code snippets designed to assist developers in their software development journey.
 
 ## Table of Contents
 
@@ -25,10 +25,18 @@ Explore a variety of C# projects tailored for different purposes. Each project c
 Discover a collection of C# code snippets covering common programming tasks, design patterns, and best practices. 
 These snippets are designed to be concise and reusable, making them handy for quick reference during development.
 
-## Usage
 
+### Prerequisites
+
+1. Download and install the appropriate version of Microsoft Framework (4.8 and above)
+2. Use appropriate IDE like VS Code (mainly for exploring the snippets) or Visual Studio (to modify and recompile the projects).
+
+## Usage
 Feel free to clone or fork this repository to leverage the included projects and snippets in your own development work. 
 Refer to individual project directories for specific usage instructions and documentation.
+   ```bash
+   git clone https://github.com/Grrr1337/Csharp-Projects.git
+```
 
 ## Contributing
 
