@@ -29,13 +29,6 @@ Snake Game is a simple WinForm-based implementation of the classic Snake game in
 
 - You can easily customize the game settings such as the size of the game board, speed, and appearance by modifying variables in the code.
 
-## Author
-
-[Your Name]
-
-Feel free to modify this README file to add any specific details about your Snake Game implementation or instructions for players.
-
-
 ## Dependencies
 
 - .NET Framework v4.8
