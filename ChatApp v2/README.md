@@ -72,5 +72,3 @@ Chat Application v2 is a continuation of my initial 'Chat App' project and is a 
 ## Author
 
 Grrr1337 aka. Vladimir Balabanov
-
-Feel free to customize this README file based on your preferences and add any additional information about the project or instructions for users.
