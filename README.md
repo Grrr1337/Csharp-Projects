@@ -43,5 +43,5 @@ Refer to individual project directories for specific usage instructions and docu
 Your contributions are welcome! If you have additional C# projects or useful code snippets that you believe would benefit others, please follow the [contribution guidelines](CONTRIBUTING.md) to submit your changes.
 
 ## License
-
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This repository is licensed under the MIT License, allowing you to use and modify the content as needed.
+See the [LICENSE](LICENSE) file for details.
