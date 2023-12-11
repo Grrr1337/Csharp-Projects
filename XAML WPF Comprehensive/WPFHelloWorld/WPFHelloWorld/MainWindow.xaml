@@ -1,0 +1,27 @@
+﻿<Window x:Class="WPFHelloWorld.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFHelloWorld"
+        mc:Ignorable="d"
+        Title="Hello World" Height="300" Width="300">
+    <!-- XAML stands for eXtensible Application Markup Language -->
+    <StackPanel> <!-- Stack panel stacks the element ontop of each other -->
+        <Label>Hello World!</Label>
+        
+        <!-- Assigning a name (x:Name) to the label -->
+        <Label x:Name="myLabel">Hello Vlado!</Label>
+        
+        <Button Click="Button_Click">Click Me</Button>
+
+        <Button Click="BtnAddProgramatically_Click">Add Button Programatically</Button>
+        
+        <!-- (NOT WORKING) Using a lambda expression for the Click event -->
+        <!-- ErrorMessage "...is not a valid event handler method name. Only instance methods on the generated or code-behind class are valid." -->
+        <!-- 
+        <Button Content="Click Me Lambda" Click="(_, _) => MessageBox.Show('Vladimir Has clicked the Lambda button!')"/>
+        -->
+        
+    </StackPanel>
+</Window>
