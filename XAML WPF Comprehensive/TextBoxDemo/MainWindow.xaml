@@ -1,0 +1,35 @@
+﻿<Window x:Class="TextBoxDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextBoxDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="300">
+    <StackPanel>
+        <!--  
+            Use these properties for the 'TextBox' in order to simulate richTextBox behaviour:
+            AcceptsReturn="True"
+            TextWrapping="Wrap" 
+            "WrapWithOverflow" will not jump on super-long words
+        -->
+        <!-- 
+            These two also work together:
+            SpellCheck.IsEnabled="True"
+            Language="en-US"
+        -->
+        <TextBox 
+            FontSize="30" 
+            Margin="15"
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            SpellCheck.IsEnabled="True"
+            Language="en-US"
+            AcceptsTab="False"
+            Text="Default text"
+            Background="LightCoral"
+            Foreground="DarkBlue"
+            IsReadOnly="False"
+            />
+    </StackPanel>
+</Window>
