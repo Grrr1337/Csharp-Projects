@@ -4,7 +4,8 @@ Snake Game is a simple WinForm-based implementation of the classic Snake game in
 
 ## Game Preview
 
-![Game Preview](./snake_game_preview.jpg)
+![Snake Game Demo](Snake%20Game%20Demo.gif)
+ 
 
 ## How to Play
 
