@@ -1,0 +1,85 @@
+﻿<Window x:Class="WPF_StackMove.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_StackMove"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="420" Width="600">
+    <StackPanel Orientation="Vertical">
+        <TextBlock 
+            x:Name="TitleTextBlock"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0, 10, 0, 10"
+            >
+            <Run Text="" />
+            <Run Text="Click" FontWeight="Bold" />
+            <Run Text="on an Item to move it to the right, " />
+            <Run Text="CTRL+Click" FontWeight="Bold" />
+            <Run Text=" to move it to the left" />
+        </TextBlock>
+        <TextBlock 
+            x:Name="InfoTextBlock"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+            <Run Text="" />
+        </TextBlock>
+        <Grid x:Name ="stackPanelGrid"  Width="480" Height="Auto"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+              >
+            <!-- Set a fixed width or adjust as needed -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+              
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+                <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="10">
+                <StackPanel x:Name="stackPanel1" Orientation="Vertical">
+                    <!-- Buttons will be added dynamically here -->
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="10">
+                <StackPanel x:Name="stackPanel2" Orientation="Vertical">
+                    <!-- Buttons will be added dynamically here -->
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" Margin="10">
+                <StackPanel x:Name="stackPanel3" Orientation="Vertical">
+                    <!-- Buttons will be added dynamically here -->
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Button x:Name="btnAuthor"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+            <Button.Content>
+                <Run Text="Author" />
+            </Button.Content>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Style>
+            </Button.Style>
+        </Button>
+    </StackPanel>
+ 
+  
+</Window>
