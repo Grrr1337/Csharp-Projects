@@ -2,7 +2,10 @@
 
 Chat Application v2 is a continuation of my initial 'Chat App' project and is a simple chat program developed in C# using Windows Forms, that is based on a client-server architecture using TCP/IP sockets. It allows communication between multiple instances of the program, with one acting as the server and others as clients.
 
-![Sample UI](./sample_ui.jpg)
+## Demo
+
+![Demo ChatApp v2](Demo%20ChatApp%20v2.gif)
+
 
 ## How to Use
 
