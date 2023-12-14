@@ -2,7 +2,9 @@
 
 Chat Application is a simple chat program developed in C# using Windows Forms and is based on a client-server architecture using TCP/IP sockets.. It allows communication between two instances of the program, one acting as the server and the other as the client.
 
-![Sample UI](./sample_ui.jpg)
+## Demo
+
+![Chat App Demo](Chat%20App%20Demo.gif)
 
 ## How to Use
 
