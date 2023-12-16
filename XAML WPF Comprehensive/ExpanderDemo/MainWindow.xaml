@@ -1,0 +1,41 @@
+﻿<Window x:Class="ExpanderDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExpanderDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <!-- The Expander control can contain multiple controls inside of it-->
+        <!-- its purpose is to temporarily hide controls in order to save window space -->
+        <!-- 
+       <Expander Header="Click me to expand and again to hide my content" >
+        -->
+        <Expander x:Name="myExpander">
+            <!-- Note: this is useful for designing Q/A applications -->
+            <Expander.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Source="https://avatars.githubusercontent.com/u/38167466?v=4"/>
+                    <TextBlock VerticalAlignment="Center">click to Expand and to hide</TextBlock>
+                </StackPanel>
+            </Expander.Header>
+            
+            <StackPanel>
+
+                <Button Height="25" Width="60">Button1</Button>
+                <Button Height="25" Width="60">Button2</Button>
+                <Button Height="25" Width="60">Button3</Button>
+                <DatePicker>
+                    
+                </DatePicker>
+                <TextBlock
+                    TextWrapping="Wrap"
+                    FontSize="20"
+                    >
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </TextBlock>
+            </StackPanel>
+        </Expander>
+    </StackPanel>
+</Window>

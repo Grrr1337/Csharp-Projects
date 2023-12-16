@@ -1,0 +1,63 @@
+﻿<Window x:Class="CanvasDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CanvasDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="400">
+    <!--
+    The Canvas control in WPF is a container that allows precise placement 
+    of child elements using explicit coordinates.
+    Unlike other layout panels like Grid or StackPanel, which organize elements in a structured manner,
+    the Canvas allows you to specify exact positioning using properties
+    like Canvas.Left, Canvas.Top, Canvas.Right, and Canvas.Bottom.
+    -->
+    <Canvas
+        Opacity="0.9"
+        >
+        <Button Canvas.Left="5">Top Left</Button>
+        <Button Canvas.Right="5">Top Right</Button>
+        <Rectangle Width="100" Height="100" Fill="Aqua"
+                   Canvas.Bottom="0"
+                   Canvas.Right="0"
+                   Panel.ZIndex="1"
+                   />
+        <!-- The control that was added later overwrites ontop
+        of the previous one
+        -->
+        <Rectangle Width="100" Height="100" Fill="Blue"
+                   Canvas.Bottom="50"
+                   Canvas.Right="50"
+                   Panel.ZIndex="0"
+                   />
+        <Path Stroke="Black" StrokeThickness="2">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigure StartPoint="50,50">
+                            <PolyLineSegment Points="100,0 150,50 150,100 100,150 50,150"/>
+                        </PathFigure>
+                        <!-- I cannot change here the Stroke color or thickness -->
+                        <!-- I must define it as a separate path with the same coordinates instead -->
+                        <PathFigure StartPoint="50,150">
+                            <PolyLineSegment Points="200,200 150,130 180,100 300,120"/>
+                        </PathFigure>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="Red" StrokeThickness="4">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigure StartPoint="50,150">
+                            <PolyLineSegment Points="200,200 150,130 180,100 300,120"/>
+                        </PathFigure>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+    </Canvas>
+</Window>

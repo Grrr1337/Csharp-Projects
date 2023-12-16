@@ -1,0 +1,106 @@
+﻿<Window x:Class="GridSpanningDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GridSpanningDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="myGrid">
+        <!-- training about grid spanning -->
+        <!--
+        In this demo we would like to place a control that
+        occupies multiple rows and multiple columns.
+        In order to achieve that we can use span
+        -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <!-- TASK: 
+            We want that Button00 to occupy the space of Button 01
+            and the space of Button 10 and Button 11
+        -->
+        <!-- TASK2:
+        We want Button12 to occupy the space of Button13 
+        and Button22
+        -->
+        <Button Grid.Column="0" Grid.Row="0" 
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                Background="Aquamarine"
+                >
+                Button 00
+        </Button>
+        
+        <!-- <Button Grid.Column="1" Grid.Row="0">Button 01</Button> -->
+        
+        <Button Grid.Column="2" Grid.Row="0">Button 02</Button>
+        <Button Grid.Column="3" Grid.Row="0">Button 03</Button>
+
+        <!-- <Button Grid.Column="0" Grid.Row="1">Button 10</Button> -->
+        <!-- <Button Grid.Column="1" Grid.Row="1">Button 11</Button> -->
+        <Button Grid.Column="2" Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="2"
+                Background="BlanchedAlmond"
+                Panel.ZIndex="1"
+                >
+                Button 12
+        </Button>
+        <!-- <Button Grid.Column="3" Grid.Row="1">Button 13</Button> -->
+
+        <Button Grid.Column="0" Grid.Row="2">Button 20</Button>
+        <Button Grid.Column="1" Grid.Row="2">Button 21</Button>
+        <!--  <Button Grid.Column="2" Grid.Row="2">Button 22</Button> -->
+        <!-- Note I can adjust the ZIndex property of
+        Button 12 and Button 23 
+        in order to decide which one will be displayed ontop of the other.
+        -->
+        <Button Grid.Column="3" Grid.Row="2" 
+                Panel.ZIndex="0"
+                >
+            Button 23
+        </Button>
+
+         <!-- Here I place a button just like that ontop of Button12, by
+        modifying its ZIndex value to a higher from the one of Button12
+        -->
+        <Button Grid.Column="2" Grid.Row="1" 
+                Margin="35 35 35 35"
+                Panel.ZIndex="2"
+                >
+            CustomButton
+        </Button>
+        <!-- Here I have decided to place two more buttons in order to experiment
+        with the ZIndex - it turns out its like layered canvas (like in Photoshop)
+        -->
+        <Button Grid.Column="3" Grid.Row="2" 
+                Margin="40 40 40 40"
+                Panel.ZIndex="2"
+                VerticalContentAlignment="Bottom"
+                Background="Blue"
+                Foreground="White"
+                FontWeight="Bold"
+                >
+            CustomButton2
+        </Button>
+        <Button Grid.Column="3" Grid.Row="2" 
+                Margin="60 30 60 80"
+                Panel.ZIndex="3"
+                Background="Purple"
+                Foreground="White"
+                FontWeight="Bold"
+                >
+            CstmBtn3
+        </Button>
+
+    </Grid>
+</Window>
