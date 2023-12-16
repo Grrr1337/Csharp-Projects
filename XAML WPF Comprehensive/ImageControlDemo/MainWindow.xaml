@@ -1,0 +1,31 @@
+﻿<Window x:Class="ImageControlDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageControlDemo"
+        mc:Ignorable="d"
+        
+        Title="MainWindow" Height="300" Width="400">
+    <!--  Source="https://www.thesun.co.uk/wp-content/uploads/2017/05/nintchdbpict0003243491101-e1495026274982.jpg"
+               -->
+    <!-- Use the 'pack' URI scheme to reference the embedded image -->
+    <!--  <Image Width="260" Source="pack://application:,,,/YourProjectName;component/Images/orange_maincoon_cat.png"> -->
+    <!-- Source="pack://application:,,,/Images/orange_maincoon_cat.png" -->
+    <!-- Use the correct 'pack' URI scheme with the assembly name -->
+    <!-- <Image Width="260" Source="pack://application:,,,/ImageControlDemo;component/Images/orange_maincoon_cat.png"> -->
+    <!-- Source="pack://application:,,,/ImageControlDemo;component/Images/orange_maincoon_cat.png" -->
+    <!-- Source="/Images/orange_maincoon_cat.png" -->   
+    <StackPanel VerticalAlignment="Top">
+        <Label FontWeight="Bold" FontSize="20"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top">
+            Click on an image to cycle through
+        </Label>
+        <Image x:Name="imageControl" Width ="260"
+              
+               
+               >
+        </Image>
+    </StackPanel>
+</Window>

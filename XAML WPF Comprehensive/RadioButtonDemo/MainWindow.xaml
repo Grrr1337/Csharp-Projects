@@ -1,0 +1,68 @@
+﻿<Window x:Class="RadioButtonDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RadioButtonDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="480" Width="480">
+    <StackPanel HorizontalAlignment="Center">
+        <Label FontWeight="Bold" FontSize="32">Who do you vote for ?</Label>
+        <RadioButton
+            x:Name="rbVladimir"
+            GroupName="Politicians" 
+            FontSize="24"
+            VerticalContentAlignment="Center"
+            IsChecked="False"
+            Checked="rbVladimir_Checked"
+            Unchecked="rbVladimir_Unchecked"
+            >
+            <WrapPanel>
+                <Image Height="32" Width="32" Source="https://avatars.githubusercontent.com/u/38167466?v=4"></Image>
+                <Label Name="lblVladimir">Vladimir Balabanov</Label>
+            </WrapPanel>
+
+        </RadioButton>
+        <RadioButton
+            GroupName="Politicians"
+            FontSize="24"
+            VerticalContentAlignment="Center"
+            >
+            <WrapPanel>
+                <Image Height="32"  Width="32"  Source="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Kiril_Petkov_2021_%28cropped%29.jpg/375px-Kiril_Petkov_2021_%28cropped%29.jpg"></Image>
+                <Label>Kiril Petkov</Label>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton
+            GroupName="Politicians"
+            FontSize="24"
+            VerticalContentAlignment="Center"
+            >
+            <WrapPanel>
+                <Image Height="32"  Width="32"  Source="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/%D0%91%D0%BE%D0%B9%D0%BA%D0%BE_%D0%91%D0%BE%D1%80%D0%B8%D1%81%D0%BE%D0%B2_%2852111618357%29.jpg/800px-%D0%91%D0%BE%D0%B9%D0%BA%D0%BE_%D0%91%D0%BE%D1%80%D0%B8%D1%81%D0%BE%D0%B2_%2852111618357%29.jpg"></Image>
+                <Label>Boyko Borisov</Label>
+            </WrapPanel>
+        </RadioButton>
+
+        <RadioButton
+            GroupName="Politicians"
+            FontSize="24"
+            VerticalContentAlignment="Center"
+            >
+            <WrapPanel>
+                <Image Height="32"  Width="32" Source= "https://www.endeavor.bg/wp-content/uploads/2019/06/Vassil-Terziev-Nov-2020-1.jpg"></Image>
+                <Label>Vasil Terziev</Label>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton GroupName="Politicians">Asen Vasilev</RadioButton>
+        <RadioButton GroupName="Politicians">Ahmed Dogan</RadioButton>
+        <RadioButton GroupName="Politicians">Jordan Atanasov</RadioButton>
+
+
+        <Label FontWeight="Bold" FontSize="32">How do you feel about it?</Label>
+        <RadioButton GroupName="Feeling">Good</RadioButton>
+        <RadioButton GroupName="Feeling">Okay</RadioButton>
+        <RadioButton GroupName="Feeling">Not Happy</RadioButton>
+        <RadioButton GroupName="Feeling">Neutral</RadioButton>
+    </StackPanel>
+</Window>

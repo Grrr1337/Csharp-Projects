@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LabelDemo
+namespace RadioButtonDemo
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,6 +24,22 @@ namespace LabelDemo
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            // if(true == rbVladimir.IsChecked)
+            // {
+                // ...
+            // }
+
+
+        }
+
+        private void rbVladimir_Checked(object sender, RoutedEventArgs e)
+        {
+            lblVladimir.Background = Brushes.Aquamarine;
+        }
+
+        private void rbVladimir_Unchecked(object sender, RoutedEventArgs e)
+        {
+            lblVladimir.Background = Brushes.Transparent;
         }
     }
 }

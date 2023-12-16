@@ -1,0 +1,63 @@
+﻿<Window x:Class="CheckBoxesDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckBoxesDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="480" Width="600">
+    <StackPanel HorizontalAlignment="Center">
+        <Label FontWeight="Bold">Toppings</Label>
+        <!-- this checkbox should activate or deactivate all of the checkboxes below-->
+        <CheckBox x:Name="cbParent" 
+                  IsThreeState="True"
+                  Checked="cbParentCheckedChanged"
+                  Unchecked="cbParentCheckedChanged"
+                  >
+            
+        </CheckBox>
+        <!-- children textboxes: -->
+        <!--
+ <CheckBox
+            x:Name="cbCheese"
+            VerticalContentAlignment="Center"
+            Margin="15,5"
+            Checked="cbCheese_Checked"
+            Unchecked="cbCheese_Unchecked"
+        >
+            <WrapPanel>
+                <Image Width="60" Height="60" Source="https://pizzaparadise.in/wp-content/uploads/2018/10/excheese.jpg"></Image>
+                <Label VerticalAlignment="Center" Name="lblCheese">Extra Cheese</Label>
+            </WrapPanel>
+        </CheckBox>
+        -->
+        
+        <CheckBox x:Name="cbMozarella" VerticalContentAlignment="Center" Margin="15,5">
+            <WrapPanel>
+                <Image Width="60" Height="60" Source="https://pizzaparadise.in/wp-content/uploads/2018/10/margherita.jpg"></Image>
+                <Label VerticalAlignment="Center" Name="lblMozarella">Mozarella</Label>
+            </WrapPanel>
+        </CheckBox>
+
+        <CheckBox x:Name="cbPeperonni" VerticalContentAlignment="Center" Margin="15,5">
+            <WrapPanel>
+                <Image Width="60" Height="60" Source="https://pizzaparadise.in/wp-content/uploads/2018/10/italian.jpg"></Image>
+                <Label VerticalAlignment="Center" Name="lblPeperonni">Peperonni</Label>
+            </WrapPanel>
+        </CheckBox>
+
+        <CheckBox x:Name="cbPaprika" VerticalContentAlignment="Center" Margin="15,5">
+            <WrapPanel>
+                <Image Width="60" Height="60" Source="https://pizzaparadise.in/wp-content/uploads/2019/10/paneer-peppy.jpg"></Image>
+                <Label VerticalAlignment="Center" Name="lblPaprika">Paprika</Label>
+            </WrapPanel>
+        </CheckBox>
+
+        <CheckBox x:Name="cbMushrooms" VerticalContentAlignment="Center" Margin="15,5">
+            <WrapPanel>
+                <Image Width="60" Height="60" Source="https://pizzaparadise.in/wp-content/uploads/2018/10/mushroom.jpg"></Image>
+                <Label VerticalAlignment="Center" Name="lblMushrooms">Mushrooms</Label>
+            </WrapPanel>
+        </CheckBox>
+    </StackPanel>
+</Window>
