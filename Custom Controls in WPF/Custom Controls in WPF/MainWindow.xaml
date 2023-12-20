@@ -1,0 +1,60 @@
+﻿<Window x:Class="Custom_Controls_in_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Custom_Controls_in_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="360" Width="480">
+    <!--
+    Demonstration of how to implement the two types 
+    of custom controls that are available on WPF
+    the 1st derives from the 'Control Class',
+    the 2nd one derives from the 'User Control Class'.
+    -->
+    <!-- For starter we go to 'Add->New Item->WPF Category->Custom Control(WPF)' -->
+    <!-- For the second control we go to 'Add->New Item->WPF Category->
+    User Control(WPF)'
+    - there we can see that we have an '.xaml' aswell.
+    For example if we have created 'FanUserControl' then we will have the
+    'FanUserControl.xaml' with its corresponding 'FanUserControl.xaml.cs'
+    code-behind.
+    -->
+
+    <StackPanel Width="320">
+        <Label HorizontalAlignment="Center"
+               FontWeight="Black"
+               FontFamily="Verdana"
+               Margin="0 10 0 0"
+               >
+            CustomControl and UserControl practice
+        </Label>
+
+        <Border BorderBrush="Black" BorderThickness="2">
+            <StackPanel Margin="0 15 0 15" 
+                        Width="Auto" >
+                <!-- this is our custom control -->
+                <Label HorizontalAlignment="Center">This is our custom control:</Label>
+                <local:FanCustomControl
+            x:Name="myCustomFanControl"
+            Height="50" Width="50" 
+            Margin="0 0 0 0"
+            FanOn="False"
+            >
+                </local:FanCustomControl>
+                <CheckBox x:Name="cbToggleFan" HorizontalAlignment="Center">Toggle fan</CheckBox>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="2">
+            <StackPanel Margin="0 15 0 15">
+            <Label  HorizontalAlignment="Center">This is our user control:</Label>
+            <!-- this is our user control -->
+            <local:FanUserControl
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            </local:FanUserControl>
+        </StackPanel>
+        </Border>
+        <Label x:Name="lblAuthor">practiced by</Label>
+    </StackPanel>
+</Window>
