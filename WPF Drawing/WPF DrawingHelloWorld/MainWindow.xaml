@@ -1,0 +1,27 @@
+﻿<Window x:Class="WPF_DrawingHelloWorld.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_DrawingHelloWorld"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="480" Width="600"
+        >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" FontSize="16">
+            <MenuItem Header="_Choose an object to draw...">
+
+                <MenuItem x:Name="menuDrawRectangle" />
+                <MenuItem x:Name="menuDrawRedRectangle" />
+                <MenuItem x:Name="menuSetCircle"  />
+                <MenuItem x:Name="menuCheckerboard" />
+                <MenuItem x:Name="menuFunky"  />
+                <MenuItem x:Name="menuLines" />
+                <MenuItem x:Name="menuRandomLines" />
+                <MenuItem x:Name="menuText"  />
+            </MenuItem>
+            
+        </Menu>
+        <Canvas x:Name="canvas" Background="White"></Canvas>
+    </DockPanel>
+</Window>
