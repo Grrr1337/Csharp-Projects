@@ -110,7 +110,7 @@ The above example showcases the usage of XAML animations with triggers, defining
 2. Navigate to the project directory:
 
     ```bash
-    cd WPF-Drawing
+    cd WPF-Animations
     ```
 
 ### Open in Visual Studio
