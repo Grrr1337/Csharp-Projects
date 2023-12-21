@@ -12,12 +12,29 @@
         >
 
     <!-- 
-  
-        -->
+    There are 2 main ways that we can apply animations in WPF:
+    1. We can do it in the XAML ( we need to use StoryBoards in order to animate )
+    in other words, the 'Animation' controls must be encapsulated within 'BeginStoryBoard'
+    2. We can do it in the code-behind ( we have to use the animate classes )
+    -->
 
     <!--
-   
-        -->
+    XAML Animations:
+    - Animations in XAML are applied using Storyboards, encapsulating animation controls within the BeginStoryboard element.
+    - Triggers, including property triggers, event triggers, and data triggers, define conditions for triggering animations.
+    - Triggers enable the definition of Enter Actions (when a condition is met) and Exit Actions (when the condition is no longer met).
+    -->
+    
+    <!--
+        The animations on the xaml-side can be only done by using 'triggers'.
+        we have 3 types of triggers:
+        • property trigger
+        • event trigger
+        • data trigger
+        Triggers allows us to perform 2 types of actions:
+        • Enter Actions (when the condition is met)
+        • Exit Actions (when the condition is no longer met)
+    -->
     <Window.Resources>
 
 
@@ -33,6 +50,7 @@
 
                         <ControlTemplate.Triggers>
 
+                             <!-- this is a property trigger -->
                             <Trigger Property="IsMouseOver" Value="true">
 
                                 <Trigger.EnterActions>

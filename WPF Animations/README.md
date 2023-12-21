@@ -2,6 +2,62 @@
 
 This project is a training one that delves into the realm of animations in WPF. The project provides a basic exploration of animations, both from the XAML markup perspective and through code-behind implementation. Whether you're interested in declarative animations in XAML or dynamic animations in C#, this project covers it all.
 
+<details>
+  <summary><strong>How animations work in XAML</strong></summary>
+
+  ## There are two Main Approaches
+
+  There are two primary approaches to implementing animations in WPF:
+
+  1. **XAML Animations:**
+     - Animations in XAML are defined using **Storyboards**, which encapsulate animation controls.
+     - **Triggers** play a crucial role in XAML animations, specifying conditions that trigger animations. Triggers can be categorized into property triggers, event triggers, and data triggers.
+     - Triggers enable the definition of two types of actions:
+       - **Enter Actions:** Executed when a specified condition is met.
+       - **Exit Actions:** Executed when the specified condition is no longer met.
+
+  2. **Code-Behind Animations:**
+     - Code-behind animations involve using animation classes provided by WPF, such as `DoubleAnimation` and `ColorAnimation`.
+     - Animations are instantiated and applied directly in the code-behind file, allowing for dynamic and programmatic control.
+
+  ## XAML Animation Example
+
+  Consider the following XAML snippet, which demonstrates a simple button animation:
+
+  ```xaml
+  <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+      <Button Content="Click me">
+          <Button.Triggers>
+              <EventTrigger RoutedEvent="Button.MouseEnter">
+                  <BeginStoryboard>
+                      <Storyboard>
+                          <!-- Define animations here -->
+                          <DoubleAnimation To="130" Duration="0:0:0.3" Storyboard.TargetProperty="Width"/>
+                          <DoubleAnimation To="150" Duration="0:0:0.3" Storyboard.TargetProperty="Height"/>
+                          <ColorAnimation To="MediumSlateBlue" Duration="0:0:0.3" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                      </Storyboard>
+                  </BeginStoryboard>
+              </EventTrigger>
+              <EventTrigger RoutedEvent="Button.MouseLeave">
+                  <BeginStoryboard>
+                      <Storyboard>
+                          <!-- Define animations for mouse leave -->
+                          <!-- ... -->
+                      </Storyboard>
+                  </BeginStoryboard>
+              </EventTrigger>
+          </Button.Triggers>
+      </Button>
+
+  </Window>
+```
+
+The above example showcases the usage of XAML animations with triggers, defining animations for both mouse enter and mouse leave events.
+
+</details>
+
 ## Preview
 ![WPF Animations](WPF%20Animations%20Demo.gif)
 
