@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPF_MVVM_Architecture_Pattern.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MVVM_Architecture_Pattern"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="450">
+    <!--
+    MVVM stands for Model-View-ViewModel. 
+    It's a design pattern that separates the concerns of
+    the user interface (View) from the application logic (ViewModel) 
+    and the data (Model). Here's a brief explanation of each component:
+
+    - Model:
+    The Model represents the data and business logic of the application.
+    It is responsible for retrieving and manipulating the data.
+    
+    - View:
+    The View is responsible for displaying the data to the user
+    and capturing user input.
+    In WPF, the View is typically created using XAML,
+     which describes the structure and appearance of the user interface.
+    
+    - ViewModel:
+    The ViewModel acts as an intermediary between the View and the Model.
+    It contains the presentation logic, processing user input,
+    and managing the state of the View.
+    The ViewModel does not have any knowledge of the View's visual structure; 
+    instead, it exposes properties and commands that the View binds to.
+    It often implements the INotifyPropertyChanged interface to notify 
+    the View of changes in the data.
+    -->
+    
+    <!-- By default the main window is open, 
+    so we have to bind our custom View to it 
+    We will bind it in the code-behind
+    -->
+    <Grid>
+        <Frame x:Name="studentDataFrame"
+               Margin="20"/>
+    </Grid>
+</Window>

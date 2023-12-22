@@ -1,0 +1,24 @@
+﻿<Page x:Class="WPF_MVVM_Architecture_Pattern.Views.StudentDashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_MVVM_Architecture_Pattern.Views"
+      
+      xmlns:viewmodel="clr-namespace:WPF_MVVM_Architecture_Pattern.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      Title="StudentDashboard">
+    <!-- Add->Page -->
+    <!-- This is our view -->
+
+    <Page.Resources>
+        <viewmodel:Studentdata x:Key="studentdata"/>
+    </Page.Resources>
+    
+    <Grid DataContext="{StaticResource studentdata}">
+        <DataGrid ItemsSource="{Binding Path=Students}">
+            
+        </DataGrid>
+    </Grid>
+</Page>
