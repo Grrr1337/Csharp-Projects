@@ -1,0 +1,43 @@
+﻿<Window x:Class="WPF_INotifyPropertyChanged.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_INotifyPropertyChanged"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="360" Width="480"
+        Background="Gray">
+    <!--
+    General Practice:
+    - Create a common base class (e.g., ObservableObject) that implements INotifyPropertyChanged.
+    - Inherit custom model classes from the base class to leverage property change notifications.
+    - Use these custom model classes in different data contexts in XAML for data binding.
+    
+    -->
+   
+    <!-- Setting the DataContext to an instance of PersonModel for data binding -->
+
+    <Window.DataContext>
+        <local:PersonModel/>
+    </Window.DataContext>
+    <Grid>
+        
+   
+        <StackPanel Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+        
+        <!-- We are going to chain the content of the TextBlock to the Label's -->
+        <!-- Binding to the Name property with different UpdateSourceTrigger values -->
+            <Label Content="UpdateSourceTrigger=Explicit (MouseDoubleClick event)" Margin="0 10 0 0"/>
+        <TextBox x:Name="tbExplict" Text="{Binding Name, UpdateSourceTrigger=Explicit}"/>
+        <Label Content="UpdateSourceTrigger=LostFocus" Margin="0 10 0 0"/>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=LostFocus}"/>
+        <Label Content="UpdateSourceTrigger=PropertyChanged" Margin="0 10 0 0"/>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="UpdateSourceTrigger=Default" Margin="0 10 0 0"/>
+        <TextBox Text="{Binding Name, UpdateSourceTrigger=Default}"/>
+        <Label Content="Binding result:" Margin="0 10 0 0"/>
+        <Label Content="{Binding Name}" FontWeight="Bold"/>
+        <Label FontSize="10" Content="As you can see PropertyChanged is prefered, because it updates in real-time" Margin="0 10 0 0"/>
+        </StackPanel>
+    </Grid>
+</Window>
