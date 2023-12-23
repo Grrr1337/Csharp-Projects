@@ -1,0 +1,58 @@
+﻿<Page x:Class="WPF_MVVM_Architecture_Pattern3.Views.CarView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_MVVM_Architecture_Pattern3.Views"
+      
+      xmlns:viewmodel="clr-namespace:WPF_MVVM_Architecture_Pattern3.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="240" d:DesignWidth="300"
+      Background="LightBlue"
+      Title="CarView">
+
+    <!-- 
+        View:
+            Represents the user interface.
+            Should only be responsible for displaying information 
+            and capturing user input.
+    -->
+
+    <!-- I have added this: -->
+    <!-- xmlns:viewmodel="clr-namespace:WPF_MVVM_Architecture_Pattern2.ViewModels" -->
+    <Page.Resources>
+        <viewmodel:CarViewModel x:Key="carViewModel"/>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Label Content="CarView" 
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   />
+            <Label Content="Color:"/>
+            <TextBox x:Name="tbColor" Text="{Binding Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Model:"/>
+            <TextBox x:Name="tbModel" Text="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Year:"/>
+            <TextBox  x:Name="tbContent" Text="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- Example button bound to the UpdateCommand -->
+            <!--
+            <Button x:Name="btnUpdate" Content="Update" Command="{Binding UpdateCommand}"/>
+            -->
+
+            <Button x:Name="btnOk" Margin="0 10 0 0" Width="80" Content="OK" Command="{Binding CloseDialogCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+            <Label x:Name="lblMessage" 
+                   Content="If you don't press OK, then no data will be written."
+                   FontSize="12"
+                   FontWeight="Regular"
+                   />
+
+
+        </StackPanel>
+    </Grid>
+</Page>
